@@ -13,7 +13,7 @@ import java.util.Collections;
 @RequestMapping("/student")
 public class StudentController {
 
-    private StudentService studentService;
+    private final StudentService studentService;
 
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
@@ -24,8 +24,8 @@ public class StudentController {
         return studentService.addStudent(student);
     }
 
-    @GetMapping(params = {"id"})
-    public ResponseEntity<Student> getStudent(@PathVariable Long id) {;
+    @GetMapping("{id}")
+    public ResponseEntity<Student> getStudent(@PathVariable Long id) {
         Student student = studentService.getStudent(id);
         if (student == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
