@@ -36,7 +36,7 @@ public class FacultyService {
         return faculties.remove(id);
     }
 
-    public List<Faculty> getFacultiesColor(String color) {
+    public List<Faculty> findByColor(String color) {
         return faculties.values().stream().filter(e -> e.getColor().equals(color)).collect(Collectors.toList());
     }
 }

@@ -36,7 +36,7 @@ public class StudentService  {
         return students.remove(id);
     }
 
-    public Collection<Student> getStudentAge(Integer age) {
+    public Collection<Student> findByAge(Integer age) {
         return students.values().stream().filter(e -> e.getAge()== age).collect(Collectors.toList());
     }
 }
