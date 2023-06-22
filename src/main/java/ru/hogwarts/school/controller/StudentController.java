@@ -43,17 +43,16 @@ public class StudentController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Student> removeStudent(@PathVariable Long id) {
-        Student student = studentService.removeStudent(id);
-        if (student == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return ResponseEntity.ok(student);
+    public ResponseEntity removeStudent(@PathVariable Long id) {
+        studentService.removeStudent(id);
+        return ResponseEntity.ok().build();
     }
-
-    @GetMapping()
-    public ResponseEntity<Collection<Student>> findStudents(@RequestParam (required = false) Integer age) {
-        if (age > 0){
+    @GetMapping
+    public ResponseEntity<Collection<Student>> findStudents(@RequestParam(required = false) Integer age) {
+        if (age == null) {
+            return ResponseEntity.ok(studentService.getAllStudents());
+        }
+        if (age > 0) {
             return ResponseEntity.ok(studentService.findByAge(age));
         }
         return ResponseEntity.ok(Collections.emptyList());
