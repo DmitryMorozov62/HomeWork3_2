@@ -1,9 +1,6 @@
 package ru.hogwarts.school.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 @Entity
 public class Student {
@@ -13,14 +10,18 @@ public class Student {
     private String name;
     private int age;
 
-    public Student() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "faculty_id")
+    private Faculty faculty;
 
-    public Student(Long id, String name, int age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
+//    public Student() {
+//    }
+//
+//    public Student(Long id, String name, int age) {
+//        this.id = id;
+//        this.name = name;
+//        this.age = age;
+//    }
 
     @Override
     public String toString() {
@@ -62,5 +63,13 @@ public class Student {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
     }
 }
