@@ -14,17 +14,17 @@ public class Faculty {
     private String name;
     private String color;
 
-//    @OneToMany(mappedBy = "faculty")
-//    private List<Student> students;
+    @OneToMany(mappedBy = "faculty")
+    private List<Student> students;
 
-//    public Faculty() {
-//    }
-//
-//    public Faculty(Long id, String name, String color) {
-//        this.id = id;
-//        this.name = name;
-//        this.color = color;
-//    }
+    public Faculty() {
+    }
+
+    public Faculty(Long id, String name, String color) {
+        this.id = id;
+        this.name = name;
+        this.color = color;
+    }
 
     public Long getId() {
         return id;
@@ -67,12 +67,4 @@ public class Faculty {
     public String toString() {
         return id + name + color;
     }
-
-//    public List<Student> getStudents() {
-//        return students;
-//    }
-//
-//    public void setStudents(List<Student> students) {
-//        this.students = students;
-//    }
 }
