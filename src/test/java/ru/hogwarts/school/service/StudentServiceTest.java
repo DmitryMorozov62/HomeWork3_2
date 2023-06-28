@@ -32,14 +32,14 @@ class StudentServiceTest {
     @Test
     void getStudentNegative() {
         when(studentsRepository.findById(2L)).thenReturn(Optional.empty());
-        assertThatExceptionOfType(NoSuchElementException.class).isThrownBy(()-> out.getStudent(2L));
+        assertThatExceptionOfType(NoSuchElementException.class).isThrownBy(()-> out.findStudent(2L));
     }
 
     @Test
     void getStudent() {
         Student expected = new Student(1L, "Ivan", 18);
         when(studentsRepository.findById(1L)).thenReturn(Optional.of(expected));
-        assertThat(out.getStudent(1L)).isEqualTo(expected);
+        assertThat(out.findStudent(1L)).isEqualTo(expected);
     }
     @Test
     void editStudent() {
