@@ -10,3 +10,8 @@ select * from student where age > id;
 
 select * from student order by age;
 
+SELECT COUNT(*) FROM student;
+
+SELECT avg(age) from student;
+
+SELECT * FROM student ORDER BY id DESC LIMIT 2
