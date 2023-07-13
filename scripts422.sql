@@ -23,3 +23,6 @@ INSERT INTO human(name, age, car_id)
 VALUES ('Ivan', 20, 2),
        ('Petr', 30, 1);
 
+DROP TABLE car,human;
+
+
