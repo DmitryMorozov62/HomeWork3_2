@@ -103,4 +103,14 @@ public class StudentController {
     public Student getStudentByName(@PathVariable ("name") String name) {
         return studentService.getStudentByName(name);
     }
+
+    @GetMapping("/find_student/{letter}")
+    public ResponseEntity<List<Student>> findStudentWithChar(@PathVariable String letter){
+        return ResponseEntity.ok(studentService.findStudentWithChar(letter));
+    }
+
+    @GetMapping("/average_age_for_stream")
+    public Double getAvgAgeStudentsForStream(){
+        return studentService.getAvgAgeStudentsForStream();
+    }
 }

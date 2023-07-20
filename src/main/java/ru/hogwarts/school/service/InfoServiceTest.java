@@ -16,4 +16,9 @@ public class InfoServiceTest implements InfoService{
     public Integer getPort() {
         return port;
     }
+
+    @Override
+    public Integer getSum() {
+        return null;
+    }
 }

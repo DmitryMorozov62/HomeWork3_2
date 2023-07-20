@@ -8,7 +8,9 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.StudentsRepository;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService  {
@@ -80,5 +82,19 @@ public class StudentService  {
     public Student getStudentByName(String name) {
         logger.debug("Был вызван метод getStudentByName");
         return studentsRepository.getStudentByName(name);
+    }
+
+    public List<Student> findStudentWithChar(String letter) {
+        return studentsRepository.findAll().stream()
+                .filter(e->e.getName().startsWith(letter.toUpperCase()))
+                .sorted(Comparator.comparing(Student::getName))
+                .collect(Collectors.toList());
+    }
+
+    public Double getAvgAgeStudentsForStream() {
+        return studentsRepository.findAll().stream()
+                .mapToDouble(e -> e.getAge())
+                .average()
+                .orElseThrow();
     }
 }

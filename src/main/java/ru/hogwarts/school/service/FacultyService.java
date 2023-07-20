@@ -9,16 +9,15 @@ import ru.hogwarts.school.repositories.FacultiesRepository;
 import ru.hogwarts.school.repositories.StudentsRepository;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
-
 @Service
-public class FacultyService {
-
+public class FacultyService{
     private final FacultiesRepository facultiesRepository;
 
     private final StudentsRepository studentsRepository;
 
-    Logger logger = LoggerFactory.getLogger(FacultyService.class);
+    Logger logger = LoggerFactory.getLogger(ru.hogwarts.school.service.FacultyService.class);
 
     public FacultyService(FacultiesRepository facultiesRepository, StudentsRepository studentsRepository) {
         this.facultiesRepository = facultiesRepository;
@@ -64,4 +63,13 @@ public class FacultyService {
         logger.debug("Был вызван метод findStudentsOfFaculty");
         return studentsRepository.findAllByFaculty_id(id);
     }
+
+    public String getFacultyWithLongName() {
+        return facultiesRepository.findAll().stream()
+                .map(Faculty::getName)
+                .sorted(Comparator.comparing(String::length,Comparator.reverseOrder()))
+                .findFirst()
+                .orElseThrow();
+    }
+
 }

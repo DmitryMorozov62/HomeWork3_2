@@ -1,5 +1,6 @@
 package ru.hogwarts.school.controller;
 
+import liquibase.pro.packaged.S;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -70,5 +71,10 @@ public class FacultyController {
     @GetMapping("/allFaculties")
     public Collection<Faculty> getAll() {
         return facultyService.getAllFaculties();
+    }
+
+    @GetMapping("/longest_name_faculty")
+    public String getFacultyWithLongName() {
+        return facultyService.getFacultyWithLongName();
     }
 }
