@@ -113,4 +113,14 @@ public class StudentController {
     public Double getAvgAgeStudentsForStream(){
         return studentService.getAvgAgeStudentsForStream();
     }
+
+    @GetMapping("/allStudentForPrint")
+    public void allStudentForPrint() {
+        studentService.allStudentForPrint();
+    }
+
+    @GetMapping("/allStudentForPrintSynchronized")
+    public void allStudentForPrintSynchronized() {
+        studentService.allStudentForPrintSynchronized();
+    }
 }

@@ -97,4 +97,50 @@ public class StudentService  {
                 .average()
                 .orElseThrow();
     }
+
+    public void allStudentForPrint() {
+        List<Student> listStudents = studentsRepository.findAll();
+        printStudent(listStudents.get(0));
+        printStudent(listStudents.get(1));
+
+        new Thread(() -> {
+            printStudent(listStudents.get(2));
+            printStudent(listStudents.get(3));
+        }).start();
+
+        new Thread(() -> {
+            printStudent(listStudents.get(4));
+            printStudent(listStudents.get(5));
+        }).start();
+    }
+
+    private void printStudent(Student student){
+        try {
+            Thread.sleep(1000);
+            logger.info(student.toString());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void allStudentForPrintSynchronized() {
+        List<Student> listStudents = studentsRepository.findAll();
+
+        printStudentSynchronized(listStudents.get(0));
+        printStudentSynchronized(listStudents.get(1));
+
+        new Thread(() -> {
+            printStudentSynchronized(listStudents.get(2));
+            printStudentSynchronized(listStudents.get(3));
+        }).start();
+
+        new Thread(() -> {
+            printStudentSynchronized(listStudents.get(4));
+            printStudentSynchronized(listStudents.get(5));
+        }).start();
+    }
+
+    private synchronized void printStudentSynchronized(Student student){
+        printStudent(student);
+    }
 }
